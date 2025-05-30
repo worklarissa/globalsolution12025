@@ -53,7 +53,7 @@ export default function Login() {
                 placeholder="E-mail"
                 onChangeText={(value) => setEmail(value)}
                 style={styles.input}
-                placeholderTextColor="#FFFFFF80"
+                placeholderTextColor="#4482A7"
                 autoCapitalize="none"
                 keyboardType="email-address"
             />
@@ -61,7 +61,7 @@ export default function Login() {
             <TextInput
                 placeholder="Senha"
                 style={styles.input}
-                placeholderTextColor="#FFFFFF80"
+                placeholderTextColor="#4482A7"
                 secureTextEntry
                 onChangeText={(value) => setSenha(value)}
             />
@@ -73,7 +73,7 @@ export default function Login() {
                 <Text style={styles.botaoTexto}> Entrar</Text>
             </TouchableOpacity>
 
-            <Link href="cadastrarUsuario" style={{ marginTop: 20 }}>Cadastre-se</Link>
+            <Link href="cadastrarUsuario" style={styles.link}>Cadastre-se</Link>
 
             <StatusBar style="auto" />
 
@@ -84,7 +84,7 @@ export default function Login() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0066FF',
+        backgroundColor: '#FFFFF',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 20
@@ -93,9 +93,9 @@ const styles = StyleSheet.create({
         marginBottom: 40
     },
     title: {
-        fontFamily: 'Noto Sans SC',
+        fontFamily: 'Baloo',
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: '#F66B0E',
         fontSize: 24,
         marginBottom: 30,
         textAlign: 'center'
@@ -103,23 +103,22 @@ const styles = StyleSheet.create({
     input: {
         width: '100%',
         height: 50,
-        backgroundColor: '#FFFFFF20',
+        backgroundColor: '#E6E2DF',
         borderRadius: 10,
         padding: 15,
         marginBottom: 15,
-        color: '#FFFFFF',
-        fontSize: 16
+        fontSize: 16,
     },
     botao: {
         width: '100%',
         padding: 15,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#4482A7',
         borderRadius: 10,
         marginTop: 20,
         alignItems: 'center'
     },
     botaoTexto: {
-        color: '#0066FF',
+        color: '#ffffff',
         fontWeight: 'bold',
         fontSize: 16
     },
@@ -133,5 +132,9 @@ const styles = StyleSheet.create({
         color: '#FFD700',
         marginVertical: 10,
         textAlign: 'center'
+    },
+    link: {
+        color: "#ffffff",
+        marginTop: 20
     }
 })
