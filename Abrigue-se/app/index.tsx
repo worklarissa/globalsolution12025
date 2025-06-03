@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Link, useRouter } from 'expo-router';
 import { auth } from '../services/firebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Image } from 'expo-image'
 
 
 
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     link: {
-        color: "#ffffff",
+        color: "#F66B0E",
         marginTop: 20
     }
 })

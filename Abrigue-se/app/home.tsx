@@ -13,12 +13,12 @@ export default function ScreenHome() {
 
     return (
         <>
-            <Text>Número de emergência </Text>
+            <Text style={styles.titulo}>Número de emergência </Text>
             <View>
                 <Image></Image>
                 <Text style={styles.alerta}>Em caso de emergência ligue para 190</Text>
             </View>
-            <Text>Serviços de abrigo</Text>
+            <Text style={styles.titulo}>Serviços de abrigo</Text>
             <View style={styles.servicos}>
             <TouchableOpacity 
                 style={styles.botao}
@@ -27,9 +27,22 @@ export default function ScreenHome() {
                 <Text style={styles.botaoTexto}>Verificar Locais</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity 
+                style={styles.botao}
+                onPress={()=>{router.push('/gestaoAbrigos')}}
+            >
+                <Text style={styles.botaoTexto}>Acessar</Text>
+            </TouchableOpacity>
 
-                <Button  title='Verificar Locais' onPress={()=>{router.push('/lugarSeguro')}} style={styles.botao} />
-                <Button title='Verificar Locais' onPress={()=>{router.push('/lugarSeguro')}}/>
+            <TouchableOpacity 
+                style={styles.botao}
+                onPress={()=>{router.push('/seguradoras')}}
+            >
+                <Text style={styles.botaoTexto}>Obtenha Informações de Seguradoras</Text>
+            </TouchableOpacity>
+
+
+                
             </View>
 
 
@@ -76,6 +89,19 @@ const styles = StyleSheet.create({
         padding: 10,   
         backgroundColor: '#4286F5',
         borderRadius: 10,
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 15
     },
+    botaoTexto: {
+        color: '#ffffff',
+        fontWeight: 'bold',
+        fontSize: 16
+    },
+    titulo: {
+        fontFamily: 'Roboto',
+        fontWeight: 'bold',
+        color: '#13293E',
+        margin: 5,
+        fontSize: 24,
+    }
 })
