@@ -2,6 +2,8 @@ import { StyleSheet, View, Text, Pressable,  } from "react-native";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons'
 import { useEffect, useState } from "react";
 import {db,doc,updateDoc,deleteDoc} from '../services/firebaseConfig'
+import { Link, useRouter } from 'expo-router'
+import { useFonts, Roboto_600SemiBold,Roboto_400Regular } from '@expo-google-fonts/roboto'
 
 interface ItemAbrigoProps {
   id: string;
@@ -12,7 +14,8 @@ interface ItemAbrigoProps {
 }
 
 export default function ItemAbrigo(props: ItemAbrigoProps) {
-    //const [isChecked, setIsChecked] = useState(props.isChecked)
+    const [ fontsLoaded ] = useFonts({Roboto_600SemiBold, Roboto_400Regular})
+    const router = useRouter()
 
     const deletarAbrigo = async () => {
         await deleteDoc(doc(db, 'abrigos', props.id))
@@ -20,34 +23,38 @@ export default function ItemAbrigo(props: ItemAbrigoProps) {
     }
 
     return (
-        <View style={styles.container}>
-            <View style={styles.infoContainer}>
-                <Text style={styles.nome}>{props.nome}</Text>
-                <Text style={styles.endereco}>{props.endereco}</Text>
-                <Text style={styles.telefone}>{props.telefone}</Text>
+        <View style={styles.card}>
+            <View>
+                <Text style={styles.titleCard}>{props.nome}</Text>
+                <Text style={styles.textCard}>{props.endereco}</Text>
+                <Text style={styles.textCard}>{props.telefone}</Text>
             </View>
             
-            <Pressable onPress={deletarAbrigo}>
-                <MaterialIcons name='delete' size={24} color='#ff4444' />
-            </Pressable>
-            <Pressable onPress={deletarAbrigo}>
-                <MaterialIcons name='edit' size={24} color='#ff4444' />
-            </Pressable>
+            <View>
+                <Pressable onPress={deletarAbrigo}>
+                    <MaterialIcons name='delete' size={24} color='#ff4444' />
+                </Pressable>
+                <Pressable onPress={() => router.push({ pathname: '/editarAbrigo', params: { id: props.id } })}>
+                    <MaterialIcons name='edit' size={24} color='#ff4444' />
+                </Pressable>
+            </View>
         </View>
     )
+
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: "row",
-        backgroundColor: 'lightgrey',
-        justifyContent: "space-between",
-        alignItems: "center",
+   card:{
+        width: '99%',
         padding: 10,
-        width: '90%',
-        alignSelf: "center",
-        borderRadius: 10,
-        marginVertical: 10
+        borderWidth: 4,
+        borderColor: '#4482A7',
+        borderRadius: 6,
+        alignItems: 'center',
+	    flexDirection: "row",
+	    justifyContent: 'space-between',
+	    alignSelf: "center",
+	    marginVertical: 10
     },
     title: {
         flex: 1,
@@ -73,6 +80,16 @@ const styles = StyleSheet.create({
     telefone: {
         fontSize: 14,
         color: "#0984e3"
-    }
+    },
+    titleCard:{
+    fontFamily: 'Roboto_600SemiBold',
+    fontSize: 25,
+    color: '4482A7',
+    },
+    textCard:{
+        fontFamily: 'Roboto_400Regular',
+        fontSize: 15,
+    
+  }
 
 })

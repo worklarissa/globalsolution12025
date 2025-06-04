@@ -16,10 +16,16 @@ export default function ScreenHome() {
     }
 
     return (
-        <>
-            <Text style={styles.titulo}>Número de emergência </Text>
+        <>  
+            <View style={styles.topo}>
+                <Text style={styles.titulo}>Número de emergência </Text>
+                <TouchableOpacity style={styles.botaoOff} 
+                onPress={realizarLogoff}>
+                    <Text style={styles.botaoTexto}>Fazer Logoff</Text>
+                </TouchableOpacity>
+            </View>
             <View style={styles.alerta}>
-                <MaterialIcons name='phone' size={50} color='#F66B0E' />
+                <MaterialIcons name='phone' size={60} color='#F66B0E' />
                 <Text style={styles.textoNumero}>Em caso de emergência ligue para: 190</Text>
             </View>
             <Text style={styles.titulo}>Serviços de abrigo</Text>
@@ -55,11 +61,6 @@ export default function ScreenHome() {
                     </TouchableOpacity>
                 </View> 
             </View>
-
-            <TouchableOpacity style={styles.botao} 
-            onPress={realizarLogoff}>
-                <Text style={styles.botaoTexto}>Fazer Logoff</Text>
-            </TouchableOpacity>
         </>
     )
 }
@@ -79,18 +80,17 @@ const styles = StyleSheet.create({
         borderColor: '#F66B0E',
         borderRadius: 6,
         fontSize: 20,
-        alignItems: 'baseline',
-        textAlign: 'center'
+        alignItems: 'center',
+        textAlign: 'center',
+        flexDirection: 'row'
     },
     servicos: {
         flex: 1,
-        borderBlockColor: '',
         fontFamily: 'Roboto_400Regular',
-        margin: 10,
-        padding: 20,
-        height: 210,
+        padding: 10,
         textAlign: 'center',
-        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
     },
     botao: {
         width: '100%',
@@ -133,9 +133,21 @@ const styles = StyleSheet.create({
     
     },
     textoNumero:{
-        fontFamily: 'Roboto_400Regular',
-        fontSize: 15,
-        alignItems: 'center'
+        fontFamily: 'Roboto_600SemiBold',
+        fontSize: 20,
+        alignItems: 'center',
+    },
+    botaoOff:{
+        width: '30%',
+        padding: 5,   
+        backgroundColor: '#4482A7',
+        borderRadius: 10,
+        alignItems: 'center',
+        marginTop: 10,
+        marginEnd: 5
+    },
+    topo:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     }
-    
 })

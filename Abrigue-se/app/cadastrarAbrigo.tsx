@@ -111,13 +111,13 @@ export default function cadastrarAbrigo(){
                 style={styles.botao} 
                 onPress={salvarItem}
             >
-                <Text>Cadastrar</Text>
+                <Text style={styles.botaoTexto}>Cadastrar</Text>
             </Pressable>
 
             <TouchableOpacity style={styles.botao} 
-                            onPress={()=>{router.push('/home')}}
+                            onPress={()=>{router.push('/gestaoAbrigos')}}
                         >
-                            <Text style={styles.botaoTexto}>Voltar ao menu principal</Text>
+                            <Text style={styles.botaoTexto}>Voltar a Gestão de Abrigos</Text>
             </TouchableOpacity>
 
         </View>
@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
         margin: 5
     },
     botao: {
+        
         width: '100%',
         padding: 10,   
         backgroundColor: '#4482A7',

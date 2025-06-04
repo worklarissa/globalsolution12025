@@ -1,30 +1,81 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Link, useRouter } from 'expo-router'
 import { useFonts, Roboto_600SemiBold,Roboto_400Regular } from '@expo-google-fonts/roboto'
+import { db,collection,getDocs} from '../services/firebaseConfig'
+import ItemAbrigo from '../components/itemAbrigo'
+import { useEffect, useState } from 'react';
+
+interface Item {
+  id: string;
+  endereco: string;
+  nome: string;
+  telefone: string;
+}
 
 export default function ScreenLugarSeguro() {
-  const [ fontsLoaded ] = useFonts({Roboto_600SemiBold, Roboto_400Regular})
-  const router = useRouter()
+      const [ fontsLoaded ] = useFonts({Roboto_600SemiBold, Roboto_400Regular})
+      const router = useRouter()
+      const [nome, setNome] = useState('');
+      const [endereco, setEndereco] = useState('');
+      const [telefone, setTelefone] = useState('');
+      const[listItems,setListItems]=useState<Item[]>([])
+
+      const buscarItems = async()=>{
+              try{
+                  const querySnapshot = await getDocs(collection(db,'abrigos'))
+                  const items: Item[] = []
+              
+                  querySnapshot.forEach((doc)=>{
+                      const data = doc.data()
+                      items.push({
+                          ...doc.data(),
+                          id:doc.id,
+                          nome: data.nome || 'Sem título', // Valor padrão
+                          endereco: data.endereco || 'Sem endereço',
+                          telefone: data.telefone || 'Sem telefone',
+      
+                      })
+                  })
+                  console.log('Itens carregados: ',items)
+                  setListItems(items)
+              }catch(e){
+                  console.log("Error, ",e)
+              }
+          }
+      
+          useEffect(()=>{
+              buscarItems()
+          },[])
+
+
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Serviços de abrigo</Text>
+      <Text style={styles.titulo}>Abrigos Conhecidos</Text>
                   <View style={styles.servicos}>
-                      <View style={styles.card}>
-                          <Text style={styles.titleCard}>Lugar Seguro</Text>
-                          <Text style={styles.textCard}>Encontre um lugar seguro, perto de você.</Text>
-                      </View>
-                      <View style={styles.card}>
-                          <Text style={styles.titleCard}>Gestão de Abrigos</Text>
-                          <Text style={styles.textCard}>Cadastre e busque por pessoas que podem estar nos abrigos</Text>
-                      </View>
-                      <View style={styles.card}>
-                          <Text style={styles.titleCard}>Seguradoras</Text>
-                          <Text style={styles.textCard}>Encontre informações de contato de algumas seguradoras</Text>
-                      </View> 
+                              {listItems.length>0?(
+                                              <FlatList
+                                                  data={listItems}
+                                                  renderItem={({ item }) =>
+                                                  <ItemAbrigo
+                                                      nome={item.nome}
+                                                      endereco={item.endereco}
+                                                      telefone={item.telefone}
+                                                      id={item.id}
+                                                      buscarItems={buscarItems}
+                                                  />
+                                              }
+                                                  keyExtractor={item => item.id}
+                                              />
+                                          ):(<ActivityIndicator />)}
                   </View>
 
+                  <TouchableOpacity 
+                              style={styles.botao}
+                              onPress={()=>{router.push('/cadastrarAbrigo')}}
+                          >
+                              <Text style={styles.botaoTexto}>Cadastrar Abrigo</Text>
+                  </TouchableOpacity>
                   <TouchableOpacity 
                               style={styles.botao}
                               onPress={()=>{router.push('/home')}}
@@ -51,13 +102,10 @@ const styles = StyleSheet.create({
   },
   servicos: {
         flex: 1,
-        borderBlockColor: '',
         fontFamily: 'Roboto_400Regular',
-        margin: 10,
-        padding: 20,
-        height: 210,
-        textAlign: 'center',
-        alignItems: 'center',
+        margin: 2,
+        padding: 5,
+        width: '100%'
   },
   card:{
         width: '100%',
@@ -79,12 +127,12 @@ const styles = StyleSheet.create({
     
   },
   botao: {
-        width: '100%',
+        width: '90%',
         padding: 10,   
         backgroundColor: '#4482A7',
         borderRadius: 10,
         alignItems: 'center',
-        marginTop: 15
+        marginBlock: 15
   },
   botaoTexto: {
         fontFamily: 'Roboto_400Regular',
