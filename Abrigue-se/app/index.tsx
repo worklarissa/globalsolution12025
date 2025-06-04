@@ -1,15 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
-import { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useRouter } from 'expo-router';
 import { auth } from '../services/firebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image } from 'expo-image'
+import { useFonts, Roboto_600SemiBold,Roboto_400Regular } from '@expo-google-fonts/roboto'
+import * as SplashScreen from 'expo-splash-screen'
 
 
 
 export default function Login() {
+    const [ fontsLoaded ] = useFonts({Roboto_600SemiBold, Roboto_400Regular})
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
@@ -94,14 +97,15 @@ const styles = StyleSheet.create({
         marginBottom: 40
     },
     title: {
-        fontFamily: 'Baloo',
+        fontFamily: 'Roboto_600SemiBold',
         fontWeight: 'bold',
         color: '#F66B0E',
-        fontSize: 24,
+        fontSize: 30,
         marginBottom: 30,
         textAlign: 'center'
     },
     input: {
+        fontFamily: 'Roboto_400Regular',
         width: '100%',
         height: 50,
         backgroundColor: '#E6E2DF',
@@ -116,18 +120,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#4482A7',
         borderRadius: 10,
         marginTop: 20,
-        alignItems: 'center'
+        alignItems: 'center'  
     },
     botaoTexto: {
+        fontFamily: 'Roboto_600SemiBold',
         color: '#ffffff',
         fontWeight: 'bold',
         fontSize: 16
-    },
-    texto: {
-        padding: 20,
-        color: '#FFFFFF',
-        textAlign: 'center',
-        marginTop: 30
     },
     erro: {
         color: '#FFD700',
@@ -135,6 +134,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     link: {
+        fontFamily: 'Roboto_600SemiBold',
         color: "#F66B0E",
         marginTop: 20
     }
