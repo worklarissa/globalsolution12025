@@ -30,30 +30,11 @@ export default function ItemAbrigo(props: ItemAbrigoProps) {
             <Pressable onPress={deletarAbrigo}>
                 <MaterialIcons name='delete' size={24} color='#ff4444' />
             </Pressable>
+            <Pressable onPress={deletarAbrigo}>
+                <MaterialIcons name='edit' size={24} color='#ff4444' />
+            </Pressable>
         </View>
     )
-
-
-    /* useEffect(()=>{
-        updateIsChecked()
-    },[isChecked])
-
-    return (
-        <View style={styles.container}>
-            <Pressable onPress={()=>setIsChecked(!isChecked)}>
-                {isChecked ? (
-                    <AntDesign name='checkcircle' size={24} color='black' />
-                ) : (
-                    <AntDesign name='checkcircleo' size={24} color='black' />
-                )}
-
-            </Pressable>
-            <Text style={styles.title}>{props.title}</Text>
-            <Pressable onPress={deletarItem}>
-                <MaterialIcons name='delete' size={24} color='black' />
-            </Pressable>
-        </View>
-    )*/
 }
 
 const styles = StyleSheet.create({
@@ -74,7 +55,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 500
     },
-    infoContainer: { // <-- Adicione esta linha
+    infoContainer: { 
         flex: 1,
         marginRight: 10,
     },

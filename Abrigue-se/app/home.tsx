@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Link, useRouter } from 'expo-router'
 import { useFonts, Roboto_600SemiBold,Roboto_400Regular } from '@expo-google-fonts/roboto'
 import { Image } from 'expo-image'
+import { AntDesign, MaterialIcons } from '@expo/vector-icons'
 
 export default function ScreenHome() {
     const [ fontsLoaded ] = useFonts({Roboto_600SemiBold, Roboto_400Regular})
@@ -17,8 +18,9 @@ export default function ScreenHome() {
     return (
         <>
             <Text style={styles.titulo}>Número de emergência </Text>
-            <View>
-                <Text style={styles.alerta}>Em caso de emergência ligue para: 190</Text>
+            <View style={styles.alerta}>
+                <MaterialIcons name='phone' size={50} color='#F66B0E' />
+                <Text style={styles.textoNumero}>Em caso de emergência ligue para: 190</Text>
             </View>
             <Text style={styles.titulo}>Serviços de abrigo</Text>
             <View style={styles.servicos}>
@@ -71,16 +73,14 @@ const styles = StyleSheet.create({
         padding: 20
     },
     alerta: {
-        flex: 1,
-        fontFamily: 'Roboto_400Regular',
         margin: 10,
         padding: 20,
         borderWidth: 4,
         borderColor: '#F66B0E',
         borderRadius: 6,
-        textAlign: 'center',
-        alignItems: 'center',
-        fontSize: 20
+        fontSize: 20,
+        alignItems: 'baseline',
+        textAlign: 'center'
     },
     servicos: {
         flex: 1,
@@ -132,10 +132,10 @@ const styles = StyleSheet.create({
         fontSize: 15,
     
     },
-    image: {
-    flex: 1,
-    width: '50%',
-    backgroundColor: '#0553',
-  },
-  
+    textoNumero:{
+        fontFamily: 'Roboto_400Regular',
+        fontSize: 15,
+        alignItems: 'center'
+    }
+    
 })

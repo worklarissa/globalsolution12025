@@ -1,8 +1,10 @@
 import React from 'react'
-import {Text,View,TextInput,StyleSheet, FlatList, ActivityIndicator, Pressable} from 'react-native'
+import {Text,View,TextInput,StyleSheet, FlatList, ActivityIndicator, Pressable, TouchableOpacity} from 'react-native'
 import { useState,useEffect } from 'react'
 import { db,collection,addDoc,getDocs} from '../services/firebaseConfig'
 import ItemAbrigo from '../components/itemAbrigo'
+import { Link, useRouter } from 'expo-router'
+import { useFonts, Roboto_600SemiBold,Roboto_400Regular } from '@expo-google-fonts/roboto'
 
 interface Item {
   id: string;
@@ -12,6 +14,9 @@ interface Item {
 }
 
 export default function cadastrarAbrigo(){
+    const [ fontsLoaded ] = useFonts({Roboto_600SemiBold, Roboto_400Regular})
+    const router = useRouter()
+
     const [nome, setNome] = useState('');
     const [endereco, setEndereco] = useState('');
     const [telefone, setTelefone] = useState('');
@@ -68,7 +73,7 @@ export default function cadastrarAbrigo(){
             {listItems.length>0?(
                 <FlatList
                     data={listItems}
-                    renderItem={({ item }) => (
+                    renderItem={({ item }) =>
                     <ItemAbrigo
                         nome={item.nome}
                         endereco={item.endereco}
@@ -76,7 +81,7 @@ export default function cadastrarAbrigo(){
                         id={item.id}
                         buscarItems={buscarItems}
                     />
-                )}
+                }
                     keyExtractor={item => item.id}
                 />
             ):(<ActivityIndicator />)}
@@ -109,6 +114,12 @@ export default function cadastrarAbrigo(){
                 <Text>Cadastrar</Text>
             </Pressable>
 
+            <TouchableOpacity style={styles.botao} 
+                            onPress={()=>{router.push('/home')}}
+                        >
+                            <Text style={styles.botaoTexto}>Voltar ao menu principal</Text>
+            </TouchableOpacity>
+
         </View>
     )
 }
@@ -135,4 +146,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 15
     },
+    botaoTexto: {
+        fontFamily: 'Roboto_400Regular',
+        color: '#ffffff',
+        fontWeight: 'bold',
+        fontSize: 16
+    }
 })
