@@ -1,10 +1,9 @@
 import React from 'react'
-import { Text, Button, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { Link, useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
 import { useFonts, Roboto_600SemiBold,Roboto_400Regular } from '@expo-google-fonts/roboto'
-import { Image } from 'expo-image'
-import { AntDesign, MaterialIcons } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 
 export default function ScreenHome() {
     const [ fontsLoaded ] = useFonts({Roboto_600SemiBold, Roboto_400Regular})
@@ -31,6 +30,7 @@ export default function ScreenHome() {
             <Text style={styles.titulo}>Serviços de abrigo</Text>
             <View style={styles.servicos}>
                 <View style={styles.card}>
+                    <MaterialIcons name='home' size={60} color='#4482A7' />
                     <Text style={styles.titleCard}>Lugar Seguro</Text>
                     <Text style={styles.textCard}>Encontre um lugar seguro, perto de você.</Text>
                     <TouchableOpacity 
@@ -41,6 +41,7 @@ export default function ScreenHome() {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.card}>
+                    <MaterialIcons name='folder' size={60} color='#4482A7' />
                     <Text style={styles.titleCard}>Gestão de Abrigos</Text>
                     <Text style={styles.textCard}>Cadastre e busque por pessoas que podem estar nos abrigos</Text>
                     <TouchableOpacity 
@@ -51,6 +52,7 @@ export default function ScreenHome() {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.card}>
+                    <MaterialIcons name='list' size={60} color='#4482A7' />
                     <Text style={styles.titleCard}>Seguradoras</Text>
                     <Text style={styles.textCard}>Encontre informações de contato de algumas seguradoras</Text>
                     <TouchableOpacity 
@@ -87,9 +89,8 @@ const styles = StyleSheet.create({
     servicos: {
         flex: 1,
         fontFamily: 'Roboto_400Regular',
-        padding: 10,
+        padding: 5,
         textAlign: 'center',
-        flexDirection: 'column',
         justifyContent: 'space-between',
     },
     botao: {
@@ -115,12 +116,13 @@ const styles = StyleSheet.create({
     },
     card:{
         width: '100%',
-        padding: 20,
-        margin: 5,
+        padding: 5,
         borderWidth: 4,
         borderColor: '#4482A7',
         borderRadius: 6,
         alignItems: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
     },
     titleCard:{
         fontFamily: 'Roboto_600SemiBold',

@@ -1,5 +1,5 @@
 import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Link, useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
 import { useFonts, Roboto_600SemiBold,Roboto_400Regular } from '@expo-google-fonts/roboto'
 import { db,collection,getDocs} from '../services/firebaseConfig'
 import ItemAbrigo from '../components/itemAbrigo'

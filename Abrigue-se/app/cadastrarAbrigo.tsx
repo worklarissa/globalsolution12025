@@ -3,7 +3,7 @@ import {Text,View,TextInput,StyleSheet, FlatList, ActivityIndicator, Pressable, 
 import { useState,useEffect } from 'react'
 import { db,collection,addDoc,getDocs} from '../services/firebaseConfig'
 import ItemAbrigo from '../components/itemAbrigo'
-import { Link, useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
 import { useFonts, Roboto_600SemiBold,Roboto_400Regular } from '@expo-google-fonts/roboto'
 
 interface Item {

@@ -5,9 +5,7 @@ import { Link, useRouter } from 'expo-router';
 import { auth } from '../services/firebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Image } from 'expo-image'
 import { useFonts, Roboto_600SemiBold,Roboto_400Regular } from '@expo-google-fonts/roboto'
-import * as SplashScreen from 'expo-splash-screen'
 
 
 

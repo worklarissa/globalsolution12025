@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Pressable, ActivityIndicator, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { db, doc, getDocs, updateDoc, getDoc } from '../services/firebaseConfig';
+import { db, doc, updateDoc, getDoc } from '../services/firebaseConfig';
 import { useFonts, Roboto_600SemiBold, Roboto_400Regular } from '@expo-google-fonts/roboto';
 
 export default function EditarAbrigo() {
