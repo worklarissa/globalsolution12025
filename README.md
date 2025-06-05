@@ -33,6 +33,8 @@ e suporte em momentos de emergência. Dessa forma, o sistema contribui para a se
 
 ### Como Executar
 
+Obs: Devido a um conflito de versões entre o Expo e o Firebase Autenthicathor(ainda não solucionado pelas pesquisas), a aplicação só pode ser executada na versão web.
+
 1. Clone este repositório:
 
 ```bash
