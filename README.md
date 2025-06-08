@@ -33,7 +33,7 @@ e suporte em momentos de emergência. Dessa forma, o sistema contribui para a se
 
 ### Como Executar
 
-Obs: Devido a um conflito de versões entre o Expo e o Firebase Autenthicathor(ainda não solucionado pelas pesquisas), a aplicação só pode ser executada na versão web.
+Obs: Utilize o aplicativo no seu dispositivo utilizando o seguinte tutorial: https://reactnative.dev/docs/running-on-device
 
 1. Clone este repositório:
 
